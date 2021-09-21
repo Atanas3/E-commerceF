@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div>Students table</div>
+<div><p style="color: red;">Error message</p></div>
+
+<table style="width:100%">
+    <thead>
+    <tr>
+        <th scope="col">Id/Index</th>
+        <th scope="col">FullName</th>
+        <th scope="col">Courses</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.getId()}"></td>
+        <td th:text="${student.getFullName()}"></td>
+        <td th:text="${student.getCourses()}"></td>
+    </tr>
+    <tr>
+        <td>141037</td>
+        <td>Jovan Davchev</td>
+        <td>
+            <p>EMT</p>
+            <p>WP</p>
+            <p>WBS</p>
+        </td>
+        <td>
+            <form th:action="@{/students/d(id=${student.})}" th:method="delete">
+                <button type="submit" style="color: red"><i>Delete</i></button>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>151037</td>
+        <td>Bill Gates</td>
+        <td>
+            <p>Chipping</p>
+            <p>5G</p>
+        </td>
+        <td>
+            <form>
+                <button type="submit" style="color: red"><i>Delete</i></button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<br/>
+<div style="margin-left: 200px">
+    <div>Form</div>
+    <form action="/students"
+          method="post">
+        <div>
+            <label for="id">Student id/index</label>
+            <input type="text"
+                   id="id"
+                   name="id"
+                   required
+                   placeholder="Enter student index">
+        </div>
+
+        <div>
+            <label for="fullName">Student name</label>
+            <input type="text"
+                   id="fullName"
+                   name="fullName"
+                   placeholder="Enter student name">
+        </div>
+        <button type="submit" style="color: cadetblue;">Save</button>
+    </form>
+</div>
+
+</body>
+</html>
